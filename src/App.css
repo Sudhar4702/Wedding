@@ -953,3 +953,182 @@
     transition-duration: 0.1s;
   }
 }
+
+/* =========================================
+   LUXURY GOLDEN DECORATIVE PARTICLES
+   ========================================= */
+
+.golden-particles {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  z-index: 50;
+}
+
+
+/* =========================================
+   BASIC GOLD PARTICLE
+   ========================================= */
+
+.golden-particle {
+  position: absolute;
+  top: -15px;
+
+  display: block;
+
+  border-radius: 50%;
+
+  background: #f4d58a;
+
+  opacity: 0;
+
+  box-shadow:
+    0 0 4px rgba(244, 213, 138, 0.7);
+
+  animation-name: golden-particle-fall;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+
+/* =========================================
+   EXTRA GLOWING PARTICLES
+   ========================================= */
+
+.golden-particle-glow {
+  background:
+    radial-gradient(
+      circle,
+      #fff8df 0%,
+      #f4d58a 35%,
+      #d8a94f 65%,
+      transparent 100%
+    );
+
+  box-shadow:
+    0 0 5px rgba(255, 231, 164, 0.9),
+    0 0 12px rgba(221, 174, 80, 0.55),
+    0 0 20px rgba(205, 151, 52, 0.25);
+}
+
+
+/* =========================================
+   FLOATING / FALLING ANIMATION
+   ========================================= */
+
+@keyframes golden-particle-fall {
+
+  0% {
+    transform:
+      translate3d(0, -20px, 0)
+      scale(0.4);
+
+    opacity: 0;
+  }
+
+
+  10% {
+    opacity: 0.7;
+  }
+
+
+  25% {
+    transform:
+      translate3d(
+        calc(var(--particle-drift) * 0.35),
+        25vh,
+        0
+      )
+      scale(1);
+  }
+
+
+  45% {
+    transform:
+      translate3d(
+        calc(var(--particle-drift) * -0.4),
+        45vh,
+        0
+      )
+      scale(0.75);
+
+    opacity: 0.5;
+  }
+
+
+  65% {
+    transform:
+      translate3d(
+        var(--particle-drift),
+        65vh,
+        0
+      )
+      scale(1.15);
+
+    opacity: 0.8;
+  }
+
+
+  82% {
+    transform:
+      translate3d(
+        calc(var(--particle-drift) * -0.25),
+        82vh,
+        0
+      )
+      scale(0.7);
+
+    opacity: 0.45;
+  }
+
+
+  100% {
+    transform:
+      translate3d(
+        calc(var(--particle-drift) * 0.5),
+        110vh,
+        0
+      )
+      scale(0.3);
+
+    opacity: 0;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+  .golden-particles {
+    z-index: 50;
+  }
+
+  .golden-particle {
+    animation-duration: 10s;
+  }
+}
+
+
+/* =========================================
+   ACCESSIBILITY
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .golden-particles {
+    display: none;
+  }
+}
