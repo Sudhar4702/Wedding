@@ -79,8 +79,8 @@
 .golden-shine {
   position: absolute;
 
-  left: 155px;
-  top: 385px;
+  left: 160px;
+  top: 400px;
 
   width: 200vw;
   height: 200vh;
@@ -115,7 +115,7 @@
   z-index: 100;
   display: flex;
   flex-direction: column;
-  top:475px;
+  top:510px;
   align-items: center;
   gap: 8px;
   margin-bottom: 2.5svh;
