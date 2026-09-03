@@ -437,7 +437,7 @@ else {
           </span>
 
           <span className="hero-ampersand">
-            &amp;
+            Weds
           </span>
 
           <span className="hero-name groom-name">
