@@ -1,0 +1,956 @@
+.parallax-background {
+  position: fixed;
+
+  /*
+   * Keep the background perfectly centered.
+   */
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  z-index: 0;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+
+  /*
+   * VERY IMPORTANT
+   *
+   * The image grows from the exact center.
+   * It does NOT move upward.
+   */
+  transform-origin: center center;
+
+  will-change: transform;
+
+  pointer-events: none;
+}
+
+/* ---------------------------------- HERO ---------------------------------- */
+
+.hero-section {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 24px 0;
+  text-align: center;
+  overflow: clip;
+}
+
+.hero-glow {
+  position: absolute;
+  left: 50%;
+  top: 58%;
+  z-index: 0;
+  width: 78vmin;
+  height: 78vmin;
+  max-width: 720px;
+  max-height: 720px;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.55);
+  will-change: transform, opacity;
+  mix-blend-mode: screen;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(247, 238, 218, 0.95) 0%, rgba(233, 202, 139, 0.6) 22%, rgba(214, 171, 92, 0.32) 45%, rgba(214, 171, 92, 0) 72%),
+    radial-gradient(circle at 50% 50%, rgba(247, 238, 218, 0.55) 0%, rgba(214, 171, 92, 0) 60%);
+  filter: blur(14px) saturate(1.1);
+  background-blend-mode: screen;
+}
+.hero-message{
+    position: relative;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  top:-160px;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2.5svh;
+}
+
+.golden-shine {
+  position: absolute;
+
+  left: 155px;
+  top: 385px;
+
+  width: 200vw;
+  height: 200vh;
+
+  object-fit: contain;
+
+  opacity: 0;
+
+  transform:
+    translate(-50%, -50%)
+    scale(0.15);
+
+  transform-origin: center center;
+
+  pointer-events: none;
+
+  z-index: 20;
+
+  will-change: transform, opacity;
+}
+
+.hero-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  will-change: opacity;
+}
+
+.hero-names {
+  position: relative;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  top:475px;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2.5svh;
+}
+
+.hero-name {
+  font-family: var(--wedding-font);
+  color: var(--wedding-gold);
+  font-size: var(--hero-name-size);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-indent: 0.16em;
+  line-height: 1.18;
+  color: var(--ivory);
+  text-shadow: 0 2px 20px rgba(24, 8, 13, 0.6);
+  animation: rise-fade 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-name.bride-name {
+  animation-delay: 0.45s;
+}
+
+.hero-name.groom-name {
+  animation-delay: 0.8s;
+}
+
+.hero-ampersand {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2.6rem);
+  font-style: italic;
+  line-height: 1;
+  color: var(--gold-bright);
+  text-shadow: 0 2px 14px rgba(24, 8, 13, 0.6);
+  animation: rise-fade 1.1s ease 0.6s both;
+}
+
+/* ============================================================
+   TEMPLE
+   ============================================================ */
+
+.hero-temple-wrap {
+  position: fixed;
+  z-index: 1;
+
+  /*
+   * IMPORTANT:
+   * The wrapper itself NEVER scales or moves.
+   */
+  transform: none;
+  transform-origin: center center;
+
+  will-change: auto;
+}
+
+.hero-temple {
+  top:2px;
+  display: block;
+
+  width: auto;
+  height: auto;
+  opacity: 1;
+
+  margin-bottom: 200svh;
+
+  /*
+   * The actual temple zoom happens here.
+   */
+  transform-origin: center center;
+
+  /*
+   * Only transform is animated.
+   */
+  will-change: transform;
+
+  /*
+   * Do not position the temple using top/left.
+   */
+  position: relative;
+  top: 20px;
+  left: 0;
+}
+
+
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 26px;
+  left: 50%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  animation: fade-in-x 1s ease 1.15s both;
+  transition: opacity 0.6s ease, visibility 0s linear 0.6s;
+}
+
+.hero-section.is-scrolled .scroll-indicator {
+  animation: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.scroll-indicator-text {
+  font-size: 10px;
+  letter-spacing: 0.42em;
+  text-indent: 0.42em;
+  text-transform: uppercase;
+  color: rgba(240, 226, 198, 0.7);
+}
+
+.scroll-indicator-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--gold-bright), rgba(214, 171, 92, 0));
+  animation: scroll-hint 2.2s ease-in-out infinite;
+}
+
+/* --------------------- SECTION TRANSITIONS / ORNAMENTS -------------------- */
+
+.scratch-section::before,
+.venue-section::before {
+  content: '';
+  position: absolute;
+  top: 38px;
+  left: 50%;
+  width: 110px;
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(to right, transparent, var(--gold-bright), transparent);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.scratch-section::after,
+.venue-section::after {
+  content: '';
+  position: absolute;
+  top: 35px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  transform: translateX(-50%) rotate(45deg);
+  background: var(--gold);
+  box-shadow: 0 0 8px rgba(214, 171, 92, 0.55);
+  pointer-events: none;
+}
+
+/* ------------------------------- SCRATCH CARD ----------------------------- */
+
+.scratch-section {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  padding: 56px 24px;
+  text-align: center;
+}
+
+.scratch-section h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3.2vw, 1.9rem);
+  font-weight: 500;
+  letter-spacing: 0.34em;
+  text-indent: 0.34em;
+  text-transform: uppercase;
+  color: var(--ivory-dim);
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s ease;
+}
+
+.scratch-section.is-in-view h2 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scratch-section p {
+  margin: 0;
+}
+
+.scratch-hint {
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-indent: 0.28em;
+  color: rgba(219, 198, 160, 0.85);
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.scratch-section.is-in-view .scratch-hint {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
+}
+
+.scratch-section.is-revealed .scratch-hint {
+  opacity: 0;
+}
+
+.scratch-card {
+  position: relative;
+  width: min(92vw, 540px);
+  aspect-ratio: 5 / 3;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(214, 171, 92, 0.5);
+  box-shadow:
+    var(--shadow-soft),
+    inset 0 1px 0 rgba(255, 240, 205, 0.14);
+  background: radial-gradient(130% 130% at 50% 0%, rgba(96, 28, 42, 0.6), rgba(38, 11, 18, 0.88) 72%), linear-gradient(150deg, rgba(70, 18, 30, 0.55), rgba(26, 7, 12, 0.92));
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 1s cubic-bezier(0.22, 1, 0.36, 1) 0.15s,
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
+}
+
+.scratch-section.is-in-view .scratch-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scratch-card::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  z-index: 2;
+  border: 1px solid rgba(214, 171, 92, 0.28);
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+.scratch-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  touch-action: none;
+  cursor: crosshair;
+  transition: opacity 0.9s ease;
+}
+
+.scratch-card.is-revealed .scratch-canvas {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scratch-cover-sheen {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 32%, rgba(255, 244, 214, 0.14) 46%, rgba(255, 244, 214, 0.04) 56%, transparent 70%);
+  background-size: 220% 100%;
+  animation: sheen-slide 3.4s ease-in-out infinite;
+  transition: opacity 0.9s ease;
+}
+
+.scratch-card.is-revealed .scratch-cover-sheen {
+  opacity: 0;
+}
+
+.scratch-reveal {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(10px) scale(0.985);
+  transition:
+    opacity 0.9s ease 0.25s,
+    transform 0.9s ease 0.25s;
+}
+
+.scratch-card.is-revealed .scratch-reveal {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.reveal-label {
+  font-size: 10px;
+  letter-spacing: 0.42em;
+  text-indent: 0.42em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.reveal-date {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 6vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  color: var(--ivory);
+  text-shadow: 0 2px 16px rgba(20, 6, 10, 0.5);
+}
+
+/* -------------------------------- COUNTDOWN ------------------------------- */
+
+.countdown {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 26px;
+  width: 100%;
+  margin-top: 2px;
+  padding-top: 20px;
+}
+
+.countdown::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 64px;
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(to right, transparent, var(--gold-bright), transparent);
+}
+
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 64px;
+  animation: rise-fade 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.countdown-value {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 7vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  color: var(--ivory);
+  text-shadow: 0 2px 12px rgba(20, 6, 10, 0.5);
+}
+
+.countdown-label {
+  font-size: 10px;
+  letter-spacing: 0.34em;
+  text-indent: 0.34em;
+  padding-left: 0.34em;
+  color: var(--gold);
+}
+
+/* -------------------------------- VENUE ----------------------------------- */
+
+.venue-section {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 88px 24px 64px;
+}
+
+.venue-inner {
+  display: grid;
+  grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
+  gap: clamp(28px, 6vw, 72px);
+  align-items: center;
+  width: min(100%, 980px);
+  margin: 0 auto;
+}
+
+.venue-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.venue-section.is-in-view .venue-photo-frame {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.bride-groom-photo {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+
+  width: calc(100% - 24px);
+  height: calc(100% - 24px);
+
+  object-fit: contain;
+
+  border-radius: 2px;
+
+  opacity: 1;
+
+  transition: opacity 0.6s ease;
+
+  z-index: 2;
+}
+
+.bride-groom-placeholder {
+  display: none;
+}
+
+.monogram {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 5vw, 2rem);
+  font-weight: 500;
+  letter-spacing: 0.34em;
+  text-indent: 0.34em;
+  color: var(--ivory-dim);
+}
+
+.monogram-amp {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--gold);
+}
+
+.venue-details {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+  text-align: left;
+  opacity: 0;
+  transform: translateX(24px);
+  transition:
+    opacity 1s cubic-bezier(0.22, 1, 0.36, 1) 0.1s,
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1) 0.1s;
+}
+
+.venue-section.is-in-view .venue-details {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.venue-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.5em;
+  text-indent: 0.5em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.event-block {
+  opacity: 0;
+  transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1) 0.45s;
+}
+
+.event-block:first-child {
+  transition-delay: 0.45s;
+}
+
+.event-block + .event-block {
+  border-top: 1px solid rgba(214, 171, 92, 0.24);
+  padding-top: 28px;
+  transition-delay: 0.65s;
+}
+
+.venue-section.is-in-view .event-block {
+  opacity: 1;
+}
+
+.event-title {
+  margin: 0 0 12px;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 3vw, 1.7rem);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-indent: 0.22em;
+  text-transform: uppercase;
+  color: var(--ivory-dim);
+}
+
+.event-venue {
+  margin: 0 0 10px;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.6vw, 1.4rem);
+  line-height: 1.4;
+  color: var(--gold-bright);
+}
+
+.event-meta {
+  margin: 3px 0;
+  font-size: 0.98rem;
+  letter-spacing: 0.05em;
+  color: var(--ivory-dim);
+}
+
+.event-address {
+  margin: 8px 0 0;
+  font-style: italic;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+
+/* =============================== VENUE LUXURY FRAME =============================== */
+
+
+/* Inner luxury border */
+
+.venue-photo-frame::before {
+  content: '';
+  position: absolute;
+  inset: 7px;
+
+  border: 1px solid rgba(214, 171, 92, 0.32);
+
+  pointer-events: none;
+  z-index: 3;
+}
+
+
+/* Elegant corner ornaments */
+
+.venue-photo-frame::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+
+  border: 1px solid rgba(214, 171, 92, 0.18);
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+
+/* Photo */
+
+.bride-groom-photo {
+  position: relative;
+
+  top: auto;
+  left: auto;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  border-radius: 2px;
+
+  opacity: 1;
+
+  z-index: 2;
+
+  filter:
+    drop-shadow(0 8px 18px rgba(20, 6, 10, 0.28));
+
+  transition: opacity 0.6s ease;
+}
+
+
+/* Gold corner decorations */
+
+.venue-photo-frame {
+  --corner-size: 24px;
+}
+
+
+/* Top-left */
+
+.venue-visual {
+  position: relative;
+}
+
+
+/* Small luxury diamonds around frame */
+
+.venue-photo-frame .bride-groom-photo::selection {
+  background: transparent;
+}
+
+
+/* Frame glow */
+
+.venue-photo-frame {
+  isolation: isolate;
+}
+
+.venue-photo-frame > img {
+  position: relative;
+}
+
+
+/* =========================
+   VENUE DETAILS FRAME
+   ========================= */
+
+.venue-details {
+  position: relative;
+
+  padding: 34px 36px;
+
+  border: 1px solid rgba(214, 171, 92, 0.28);
+
+   background: linear-gradient(
+    145deg,
+    rgba(82, 25, 39, 0.75),
+    rgba(38, 9, 17, 0.55)
+  );
+
+  box-shadow:
+    0 18px 50px rgba(20, 6, 10, 0.22),
+    inset 0 1px 0 rgba(255, 240, 205, 0.06);
+
+  backdrop-filter: blur(3px);
+
+  border-radius: 2px;
+}
+
+
+/* Inner detail frame */
+
+.venue-details::before {
+  content: '';
+
+  position: absolute;
+  inset: 8px;
+
+  border: 1px solid rgba(214, 171, 92, 0.13);
+
+  pointer-events: none;
+}
+
+
+/* Small diamond at top center */
+
+.venue-details::after {
+  content: '';
+
+  position: absolute;
+
+  top: -5px;
+  left: 50%;
+
+  width: 8px;
+  height: 8px;
+
+  transform: translateX(-50%) rotate(45deg);
+
+  background: var(--gold);
+
+  box-shadow:
+    0 0 10px rgba(214, 171, 92, 0.4);
+
+  z-index: 2;
+}
+
+
+/* Make content sit above decorative layers */
+
+.venue-details > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* -------------------------------- KEYFRAMES ------------------------------- */
+
+@keyframes rise-fade {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-x {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 10px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes scroll-hint {
+  0%,
+  100% {
+    transform: translateY(-4px);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+}
+
+@keyframes sheen-slide {
+  0% {
+    background-position: 130% 0;
+  }
+  100% {
+    background-position: -130% 0;
+  }
+}
+
+/* -------------------------------- RESPONSIVE ------------------------------ */
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 8svh 20px 0;
+  }
+
+  .hero-temple {
+    max-height: 70svh;
+  }
+
+  .hero-glow {
+    width: 60vmin;
+    height: 60vmin;
+    filter: blur(10px);
+  }
+
+  .scratch-card {
+    transform: translateY(16px);
+  }
+
+  .venue-section {
+    padding: 72px 20px 56px;
+  }
+
+  .venue-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .venue-details {
+    gap: 30px;
+    text-align: center;
+    transform: translateX(14px);
+  }
+
+  .venue-photo-frame {
+    width: min(74vw, 270px);
+    height: 230px;
+    transform: translateX(-14px);
+  }
+}
+
+@media (max-width: 480px) {
+  .scratch-reveal {
+    gap: 8px;
+    padding: 16px;
+  }
+
+  .countdown {
+    gap: 14px;
+  }
+
+  .countdown-item {
+    min-width: 0;
+  }
+
+  .countdown-label {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-indent: 0.22em;
+  }
+}
+
+/* ----------------------------- REDUCED MOTION ----------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-name,
+  .hero-ampersand,
+  .hero-temple,
+  .hero-temple-wrap,
+  .scroll-indicator,
+  .scroll-indicator-line,
+  .scratch-section h2,
+  .scratch-section .scratch-hint,
+  .scratch-section .scratch-card,
+  .scratch-cover-sheen,
+  .countdown-item,
+  .venue-photo-frame,
+  .venue-details,
+  .event-block {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .hero-glow {
+    opacity: 0;
+    animation: none;
+    transition: none;
+  }
+
+  .hero-content {
+    opacity: 1;
+  }
+
+  .scroll-indicator {
+    visibility: visible;
+  }
+
+  .scratch-section.is-in-view .scratch-hint,
+  .venue-section.is-in-view .event-block {
+    transition-delay: 0s;
+  }
+
+  .scratch-card .scratch-canvas,
+  .scratch-card .scratch-cover-sheen,
+  .scratch-card .scratch-reveal {
+    transition-duration: 0.1s;
+  }
+}

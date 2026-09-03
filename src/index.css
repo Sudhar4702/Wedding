@@ -1,0 +1,68 @@
+:root {
+  --ivory: #f7eeda;
+  --ivory-dim: #f3e1b6;
+  --gold: #d6ab5c;
+  --gold-bright: #e9ca8b;
+  --gold-deep: #a98342;
+  --maroon: #5a1523;
+  --maroon-deep: #300a12;
+  --text-muted: #cbb893;
+  --line-gold: rgba(214, 171, 92, 0.32);
+  --shadow-soft: 0 18px 50px rgba(10, 4, 6, 0.45);
+
+  --font-display: 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, 'Times New Roman', serif;
+  --font-serif: Georgia, 'Times New Roman', serif;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+    --wedding-font: "Cormorant Garamond", serif;
+
+  /* Secondary elegant font */
+  --wedding-script-font: "Cormorant Garamond", Georgia, serif;
+
+  /* Colors */
+  --wedding-gold: #d4af37;
+  --wedding-dark-gold: #b8860b;
+  --wedding-text: #6f5420;
+
+  /* Sizes */
+  --hero-name-size: clamp(42px, 6vw, 86px);
+  --hero-ampersand-size: clamp(32px, 4vw, 58px);
+  --hero-msg-size: clamp(18px, 2vw, 27px);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: var(--maroon-deep);
+  color: var(--ivory);
+  font-family: var(--font-serif);
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+body,
+#root {
+  min-height: 100vh;
+  min-height: 100svh;
+}
